@@ -21,12 +21,13 @@ set(GIR_TYPELIB "${GIR_PREFIX}.typelib")
 
 add_custom_command(OUTPUT ${GIR_XML}
       COMMAND ${INTROSPECTION_SCANNER}
-              --namespace=Depth-meta
+              --namespace=GstMeta
               --nsversio=$ENV{GIT_PKG_VER}
               --library=depth-meta
               --no-libtool
               --include=GObject-2.0
               --include=GModule-2.0
+	      -I${GSTREAMER_INCLUDE_DIRS} -I${GSTREAMER_PLUGINS_BASE_INCLUDE_DIRS} -I${depth-meta_INCLUDE_DIRS}
               --output ${GIR_XML}
               --warn-all
               ${HEADERS}
