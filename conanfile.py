@@ -1,6 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 from conans import ConanFile, CMake, tools
+import os
 
 def get_version():
     git = tools.Git()
@@ -44,3 +43,4 @@ class DepthMetaConan(ConanFile):
     def package_info(self):
         self.cpp_info.libs = tools.collect_libs(self)
         self.cpp_info.srcdirs.append("src")
+        self.env_info.GI_TYPELIB_PATH.append(os.path.join(self.package_folder, "lib", "girepository-1.0"))
